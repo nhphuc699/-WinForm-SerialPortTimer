@@ -67,15 +67,19 @@ namespace _WinForm_SerialPortTimer
                 byte[] buffer = new byte[bytes];
                 sPort.Read(buffer, 0, bytes);
                 string s = BitConverter.ToString(buffer);
-
+                textBox1.Text = s.Length.ToString() + "*" + s.Trim() + "*";
                 richTextBox1.AppendText(s.ToString() + Environment.NewLine);
+
+
+
+
                 //double TrongLuong = 0;
                 //string data = sPort.ReadExisting();
                 //richTextBox1.AppendText(data.Trim() + Environment.NewLine);
-                ////if (data.Length > 0)
-                ////{
-                ////    textBox1.Text = data.Length.ToString() + "*" + data.Trim() + "*";
-                ////}
+                //if (data.Length > 0)
+                //{
+                //    textBox1.Text = data.Length.ToString() + "*" + data.Trim() + "*";
+                //}
                 //data = data.Remove(0, 1);
                 //if (data[0] == '+' || data[0] == '-')
                 //{

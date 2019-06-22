@@ -69,7 +69,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(203, 80);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
+            this.textBox1.Size = new System.Drawing.Size(213, 20);
             this.textBox1.TabIndex = 2;
             // 
             // richTextBox1
