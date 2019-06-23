@@ -21,6 +21,7 @@ namespace _WinForm_SerialPortTimer
             sPort.Parity = Parity.None;
             sPort.DataBits = 8;
             sPort.StopBits = StopBits.One;
+            comboBox2.SelectedIndex = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -86,15 +87,34 @@ namespace _WinForm_SerialPortTimer
 
                     //var s = BitConverter.ToInt32(buffer, 0).ToString(); //getbuffer);
                     //textBox1.Text = s.Length.ToString() + "*" + s + "*";
-                    if (s.Length == 6)
-                    {
-                        textBox1.Text = double.Parse(s).ToString();
-                        countBytesToReadLength = 0;
-                    }
-                    else
-                    {
-                        countBytesToReadLength++;
-                    }
+                    if (comboBox2.SelectedIndex == 0)
+                        if (s.Length == 6)
+                        {
+                            textBox1.Text = double.Parse(s).ToString();
+                            countBytesToReadLength = 0;
+                        }
+                        else
+                        {
+                            countBytesToReadLength++;
+                        }
+                    if(comboBox2.SelectedIndex ==1)
+                        if (s.Length >= 7)
+                        {
+                            s = s.Replace("w", string.Empty).Replace("n", string.Empty).Replace("k", string.Empty).Replace("g", string.Empty);
+                            if (s.Length == 7)
+                            {
+                                textBox1.Text = double.Parse(s).ToString();
+                                countBytesToReadLength = 0;
+                            }
+                            else
+                            {
+                                countBytesToReadLength++;
+                            }
+                        }
+                        else
+                        {
+                            countBytesToReadLength++;
+                        }
                     if (checkBox2.Checked)
                         richTextBox1.AppendText(bytes.ToString() + "-" + buffer.Length.ToString() + "-" + s.Length.ToString() + "=>" + s.ToString() + "<=" + Environment.NewLine);
                 }
@@ -291,6 +311,9 @@ namespace _WinForm_SerialPortTimer
             richTextBox1.Text = "";
             label2.Text = "0";
             textBox1.Text = "";
+            label1.Text = "0";
+            countBytesToReadLength = 0;
+
         }
     }
 }
